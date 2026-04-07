@@ -8,7 +8,11 @@ dotenv.config();
 const PORT = process.env.PORT || 5000;
 const app = express();
 connectdb();
-app.use(cors());
+app.use(cors({
+    origin: ['https://clienttod.netlify.app', 'http://localhost:5173'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true
+}));
 app.use(express.json());
 
 app.use('/auth', authRoute);
